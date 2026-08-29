@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="./../public/logo.png" />
+    <title>Todo List</title>
+  </head>
+  <body>
+    <div class="sidebar">
+      <div class="first-part-sidebar">
+        <div class="title-div">
+          <span class="h2">TODO LIST</span>
+          <img src="./assets/logo.png" alt="Logo" id="logo" />
+        </div>
+
+        <div class="filter-div">
+          <div class="tab" id="all-div">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <title>check-all</title>
+              <path
+                d="M0.41,13.41L6,19L7.41,17.58L1.83,12M22.24,5.58L11.66,16.17L7.5,12L6.07,13.41L11.66,19L23.66,7M18,7L16.59,5.58L10.24,11.93L11.66,13.34L18,7Z"
+              />
+            </svg>
+            <span>All</span>
+          </div>
+
+          <div class="tab" id="today-div">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <title>calendar-today</title>
+              <path
+                d="M7,10H12V15H7M19,19H5V8H19M19,3H18V1H16V3H8V1H6V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3Z"
+              />
+            </svg>
+            <span>Today</span>
+          </div>
+
+          <div class="tab" id="week-div">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <title>view-week</title>
+              <path
+                d="M13,5H10A1,1 0 0,0 9,6V18A1,1 0 0,0 10,19H13A1,1 0 0,0 14,18V6A1,1 0 0,0 13,5M20,5H17A1,1 0 0,0 16,6V18A1,1 0 0,0 17,19H20A1,1 0 0,0 21,18V6A1,1 0 0,0 20,5M6,5H3A1,1 0 0,0 2,6V18A1,1 0 0,0 3,19H6A1,1 0 0,0 7,18V6A1,1 0 0,0 6,5Z"
+              />
+            </svg>
+            <span>This Week</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="project-section">
+          <span class="h2 my-project-h2">My Projects</span>
+          <button type="button" id="show-project-modal">+</button>
+        </div>
+
+        <div class="show-projects"></div>
+      </div>
+    </div>
+
+    <div class="content">
+      <p class="h2" id="content-tab">All</p>
+      <div class="output"></div>
+      <div class="todos-plus-btn-div"></div>
+    </div>
+
+    <footer>
+      <p>
+        &copy; 2026 Built by
+        <a href="https://github.com/markjasperrojas" target="_blank"
+          >markjasperrojas</a
+        >
+      </p>
+
+      <a href="https://github.com/markjasperrojas/todo-list" target="_blank"
+        ><img src="./assets/github.png" alt="Github logo" id="github-logo"
+      /></a>
+    </footer>
+
+    <dialog id="project-dialog">
+      <form id="project-form">
+        <p>Add Project</p>
+
+        <input
+          type="text"
+          name="project-title"
+          id="project-title"
+          placeholder="Project name"
+          required
+        />
+
+        <button type="submit">Add Project</button>
+        <button type="button" id="close-project-modal">Cancel</button>
+      </form>
+    </dialog>
+
+    <dialog id="project-todo-dialog">
+      <form id="project-todo-form">
+        <p>Add Todo</p>
+
+        <input
+          type="text"
+          name="project-todo-title"
+          id="project-todo-title"
+          placeholder="Todo title"
+          required
+        />
+
+        <input
+          type="date"
+          name="due-date"
+          id="due-date"
+          placeholder="Due date"
+          required
+        />
+
+        <button type="submit">Add Todo</button>
+        <button type="button" id="close-project-todo-modal">Cancel</button>
+      </form>
+    </dialog>
+  </body>
+</html>

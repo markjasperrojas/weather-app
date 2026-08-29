@@ -1,0 +1,264 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --grey: #d9d9d9;
+  --sidebar: #b59f9f;
+  --black: #202020;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  min-height: 100vh;
+  font-family: system-ui, sans-serif;
+  display: grid;
+  grid-template-columns: 35rem 1fr;
+  grid-template-rows: 1fr 5rem;
+  color: var(--black);
+}
+
+/* === SIDEBAR === */
+
+#logo {
+  width: 4rem;
+}
+
+.sidebar {
+  background: var(--sidebar);
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  font-size: 2rem;
+}
+
+.h2 {
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+.my-project-h2 {
+  font-size: 2.5rem;
+}
+
+.title-div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2.5rem;
+  gap: 1.5rem;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.tab:hover {
+  background: #ffffff;
+  cursor: pointer;
+  border-radius: 1rem;
+}
+
+.filter-div,
+.show-projects {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.project-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+
+#show-project-modal {
+  font-size: 3rem;
+  border: none;
+  font-weight: 600;
+  background: rgba(0, 0, 0, 0);
+  color: inherit;
+}
+
+.show-projects div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.show-projects .tab {
+  justify-content: space-between;
+}
+
+.show-projects .tab button {
+  background: rgba(0, 0, 0, 0);
+  border: none;
+  font-size: 2rem;
+  color: inherit;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.show-projects .tab:hover button {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* === CONTENT === */
+
+.content {
+  padding: 3rem 7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  font-size: 2rem;
+}
+
+.output {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.todo-output {
+  display: flex;
+  justify-content: space-between;
+  background: var(--sidebar);
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+}
+
+.todo-output div {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.todo-output .remove-todo button {
+  background: rgba(0, 0, 0, 0);
+  border: none;
+  font-size: 2rem;
+  color: inherit;
+}
+
+.todo-output .check-todo button {
+  border: none;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  background: #ffffff;
+}
+
+.todos-plus-btn-div {
+  display: flex;
+  justify-content: center;
+}
+
+.todos-plus-btn-div button {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  font-size: 2rem;
+  border: none;
+  background: var(--sidebar);
+  box-shadow: 0 0 1rem -5px var(--black);
+  color: var(--black);
+  font-weight: 600;
+}
+
+/* === FOOTER === */
+
+#github-logo {
+  width: 3rem;
+}
+
+#github-logo:hover {
+  transform: scale(1.05);
+}
+
+footer {
+  grid-column: 1 / 3;
+  padding: 1rem;
+  font-size: 1.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  background: var(--grey);
+}
+
+footer a {
+  text-decoration: none;
+  color: var(--black);
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* === DIALOG === */
+
+dialog {
+  margin: auto;
+  padding: 3rem;
+  border-radius: 1rem;
+  border: none;
+  font-size: 2rem;
+}
+
+dialog button {
+  width: 100%;
+  height: 4rem;
+  font-size: 1.7rem;
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+input,
+select {
+  padding: 8px;
+  font-family: inherit;
+  font-size: 1.7rem;
+}
+
+/* === GLOBAL STYLES === */
+
+button {
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(0.9);
+}
+
+img {
+  width: 4.5rem;
+}
+
+svg {
+  width: 3rem;
+  fill: var(--black);
+}
+
+button[type="submit"] {
+  background: var(--sidebar);
+  border: 1px solid var(--black);
+}
