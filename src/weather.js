@@ -1,7 +1,8 @@
 async function getWeatherData(location) {
   try {
     const response = await fetch(
-      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=SKYRQFC5MDWFR9VM75TG6ZK9C`,
+      // Remove "unitGroup=metric&" if you want Fahrenheit instead of Celsius.
+      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=metric&key=SKYRQFC5MDWFR9VM75TG6ZK9C`,
     );
 
     if (!response.ok) {
@@ -20,4 +21,30 @@ function getTemperature(data) {
   return data.currentConditions.temp;
 }
 
-export { getWeatherData, getTemperature };
+function getFeelsLike(data) {
+  return data.currentConditions.feelslike;
+}
+
+function getHumidity(data) {
+  return data.currentConditions.humidity;
+}
+
+function getWindSpeed(data) {
+  return data.currentConditions.windspeed;
+}
+
+function getCurrentConditions(data) {
+  const temperature = getTemperature(data);
+  const feelsLike = getFeelsLike(data);
+  const humidity = getHumidity(data);
+  const windSpeed = getWindSpeed(data);
+
+  return {
+    temperature,
+    feelsLike,
+    humidity,
+    windSpeed,
+  };
+}
+
+export { getWeatherData, getCurrentConditions };
