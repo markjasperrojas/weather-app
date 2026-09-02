@@ -1,6 +1,7 @@
 export function renderInformation(currentConditions) {
   let currentUnit = 'celsius';
   const informationDiv = document.querySelector('.information');
+  const toggleDiv = document.querySelector('.toggle');
 
   informationDiv.innerHTML = '';
 
@@ -36,11 +37,11 @@ export function renderInformation(currentConditions) {
     }
   });
 
-  // informationDiv.appendChild(toggleBtn);
   informationDiv.appendChild(temperatureElement);
   informationDiv.appendChild(feelsLikeElement);
   informationDiv.appendChild(humidityElement);
   informationDiv.appendChild(windSpeedElement);
+  toggleDiv.appendChild(toggleBtn);
 }
 
 function convertToFahrenheit(celsius) {
