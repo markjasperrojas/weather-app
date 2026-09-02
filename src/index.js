@@ -1,3 +1,4 @@
+import './styles.css';
 import { getWeatherData, getCurrentConditions } from './weather.js';
 import { renderInformation } from './ui.js';
 

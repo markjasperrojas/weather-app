@@ -1,0 +1,80 @@
+/* === RESET === */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  line-height: 1.5;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* --- */
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  min-height: 100vh;
+  font-size: 1.8rem;
+}
+
+/* === HEADER === */
+
+header {
+  font-size: 3rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 4rem 0;
+}
+
+/* === SEARCH BAR === */
+
+form {
+  display: flex;
+  justify-content: center;
+}
+
+form div {
+  border: 1px solid;
+  display: flex;
+  gap: 1rem;
+  padding: 2rem 4rem;
+  border-radius: 2rem;
+}
+
+#location {
+  width: 35rem;
+  font-size: 2rem;
+  border: none;
+}
+
+/* === GLOBAL STYLES === */
+
+svg {
+  width: 4rem;
+}

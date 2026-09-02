@@ -36,7 +36,7 @@ export function renderInformation(currentConditions) {
     }
   });
 
-  informationDiv.appendChild(toggleBtn);
+  // informationDiv.appendChild(toggleBtn);
   informationDiv.appendChild(temperatureElement);
   informationDiv.appendChild(feelsLikeElement);
   informationDiv.appendChild(humidityElement);
@@ -44,9 +44,9 @@ export function renderInformation(currentConditions) {
 }
 
 function convertToFahrenheit(celsius) {
-  return celsius * 1.8 + 32;
+  return (celsius * 1.8 + 32).toFixed(2);
 }
 
 function convertToMph(kmh) {
-  return Math.round(kmh * 0.621371);
+  return (kmh * 0.621371).toFixed(2);
 }
