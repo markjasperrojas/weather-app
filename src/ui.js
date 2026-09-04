@@ -4,6 +4,13 @@ export function renderInformation(currentConditions) {
   const toggleDiv = document.querySelector('.toggle');
 
   informationDiv.innerHTML = '';
+  toggleDiv.innerHTML = '';
+
+  const div1 = document.createElement('div');
+  div1.classList.add('div1');
+
+  const div2 = document.createElement('div');
+  div2.classList.add('div2');
 
   const toggleBtn = document.createElement('button');
   const temperatureElement = document.createElement('p');
@@ -37,10 +44,14 @@ export function renderInformation(currentConditions) {
     }
   });
 
-  informationDiv.appendChild(temperatureElement);
-  informationDiv.appendChild(feelsLikeElement);
-  informationDiv.appendChild(humidityElement);
-  informationDiv.appendChild(windSpeedElement);
+  div1.appendChild(temperatureElement);
+  informationDiv.appendChild(div1);
+
+  div2.appendChild(feelsLikeElement);
+  div2.appendChild(humidityElement);
+  div2.appendChild(windSpeedElement);
+  informationDiv.appendChild(div2);
+
   toggleDiv.appendChild(toggleBtn);
 }
 
