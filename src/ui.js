@@ -7,6 +7,7 @@ export function renderInformation(currentConditions, timeAndAddress) {
   toggleDiv.innerHTML = '';
 
   const div1 = document.createElement('div');
+  const innerDiv1 = document.createElement('div');
   div1.classList.add('div1');
 
   const div2 = document.createElement('div');
@@ -19,7 +20,10 @@ export function renderInformation(currentConditions, timeAndAddress) {
   const windSpeedElement = document.createElement('p');
 
   const addressElement = document.createElement('p');
+  addressElement.classList.add('address');
+
   const timeZoneElement = document.createElement('p');
+  timeZoneElement.classList.add('timezone');
 
   toggleBtn.textContent = '°C / °F';
   temperatureElement.textContent = `Temperature: ${currentConditions.temperature}°C`;
@@ -50,9 +54,10 @@ export function renderInformation(currentConditions, timeAndAddress) {
     }
   });
 
-  div1.appendChild(temperatureElement);
   div1.appendChild(addressElement);
   div1.appendChild(timeZoneElement);
+  innerDiv1.appendChild(temperatureElement);
+  div1.appendChild(innerDiv1);
   informationDiv.appendChild(div1);
 
   div2.appendChild(feelsLikeElement);
