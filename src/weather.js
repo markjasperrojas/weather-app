@@ -33,6 +33,14 @@ function getWindSpeed(data) {
   return data.currentConditions.windspeed;
 }
 
+function getResolvedAddress(data) {
+  return data.resolvedAddress;
+}
+
+function getTimeZone(data) {
+  return data.timezone;
+}
+
 function getCurrentConditions(data) {
   const temperature = getTemperature(data);
   const feelsLike = getFeelsLike(data);
@@ -47,4 +55,14 @@ function getCurrentConditions(data) {
   };
 }
 
-export { getWeatherData, getCurrentConditions };
+function getAddressAndTimeZone(data) {
+  const resolvedAddress = getResolvedAddress(data);
+  const timeZone = getTimeZone(data);
+
+  return {
+    resolvedAddress,
+    timeZone,
+  };
+}
+
+export { getWeatherData, getCurrentConditions, getAddressAndTimeZone };

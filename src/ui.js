@@ -1,4 +1,4 @@
-export function renderInformation(currentConditions) {
+export function renderInformation(currentConditions, timeAndAddress) {
   let currentUnit = 'celsius';
   const informationDiv = document.querySelector('.information');
   const toggleDiv = document.querySelector('.toggle');
@@ -18,11 +18,17 @@ export function renderInformation(currentConditions) {
   const humidityElement = document.createElement('p');
   const windSpeedElement = document.createElement('p');
 
+  const addressElement = document.createElement('p');
+  const timeZoneElement = document.createElement('p');
+
   toggleBtn.textContent = '°C / °F';
   temperatureElement.textContent = `Temperature: ${currentConditions.temperature}°C`;
   feelsLikeElement.textContent = `Feels like: ${currentConditions.feelsLike}°C`;
   humidityElement.textContent = `Humidity: ${currentConditions.humidity}%`;
   windSpeedElement.textContent = `Wind speed: ${currentConditions.windSpeed} km/h`;
+
+  addressElement.textContent = `${timeAndAddress.resolvedAddress.toUpperCase()}`;
+  timeZoneElement.textContent = `${timeAndAddress.timeZone}`;
 
   toggleBtn.addEventListener('click', () => {
     if (currentUnit === 'celsius') {
@@ -45,6 +51,8 @@ export function renderInformation(currentConditions) {
   });
 
   div1.appendChild(temperatureElement);
+  div1.appendChild(addressElement);
+  div1.appendChild(timeZoneElement);
   informationDiv.appendChild(div1);
 
   div2.appendChild(feelsLikeElement);

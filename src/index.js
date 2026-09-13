@@ -1,5 +1,9 @@
 import './styles.css';
-import { getWeatherData, getCurrentConditions } from './weather.js';
+import {
+  getWeatherData,
+  getCurrentConditions,
+  getAddressAndTimeZone,
+} from './weather.js';
 import { renderInformation } from './ui.js';
 
 const form = document.querySelector('form');
@@ -12,8 +16,9 @@ form.addEventListener('submit', async (event) => {
 
   const weatherData = await getWeatherData(location);
   const currentConditions = getCurrentConditions(weatherData);
+  const timeAndAddress = getAddressAndTimeZone(weatherData);
 
-  renderInformation(currentConditions);
+  renderInformation(currentConditions, timeAndAddress);
 
   locationInput.value = '';
 });
