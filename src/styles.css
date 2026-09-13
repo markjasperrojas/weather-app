@@ -42,6 +42,7 @@ body {
   font-size: 1.6rem;
   display: flex;
   justify-content: center;
+  background: rgb(3, 217, 255);
 }
 
 .content {
@@ -60,8 +61,13 @@ header {
   font-size: 3rem;
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 1rem;
   padding: 3.8rem 0;
+}
+
+header img {
+  width: 6rem;
 }
 
 /* === SEARCH BAR === */
@@ -73,12 +79,25 @@ form {
   gap: 1rem;
   border-radius: 1rem;
   padding: 1rem 0;
+  background: #ffffff;
+  border: none;
 }
 
 #location {
   width: 46rem;
   font-size: 2rem;
   border: none;
+  outline: none;
+}
+
+form img {
+  width: 5rem;
+}
+
+form button {
+  border: none;
+  background: #00000000;
+  cursor: pointer;
 }
 
 /* === INFORMATION === */
@@ -140,4 +159,5 @@ footer a:hover {
 
 svg {
   width: 4rem;
+  fill: #8b8b8b;
 }
