@@ -1,3 +1,5 @@
+import sunImage from './assets/sun.png';
+
 export function renderInformation(currentConditions, timeAndAddress) {
   let currentUnit = 'celsius';
   const informationDiv = document.querySelector('.information');
@@ -15,6 +17,8 @@ export function renderInformation(currentConditions, timeAndAddress) {
 
   const toggleBtn = document.createElement('button');
   const temperatureElement = document.createElement('p');
+  temperatureElement.classList.add('temperature');
+
   const feelsLikeElement = document.createElement('p');
   const humidityElement = document.createElement('p');
   const windSpeedElement = document.createElement('p');
@@ -25,8 +29,11 @@ export function renderInformation(currentConditions, timeAndAddress) {
   const timeZoneElement = document.createElement('p');
   timeZoneElement.classList.add('timezone');
 
+  const statusImage = document.createElement('img');
+  statusImage.src = sunImage;
+
   toggleBtn.textContent = '°C / °F';
-  temperatureElement.textContent = `Temperature: ${currentConditions.temperature}°C`;
+  temperatureElement.textContent = `${currentConditions.temperature}`;
   feelsLikeElement.textContent = `Feels like: ${currentConditions.feelsLike}°C`;
   humidityElement.textContent = `Humidity: ${currentConditions.humidity}%`;
   windSpeedElement.textContent = `Wind speed: ${currentConditions.windSpeed} km/h`;
@@ -42,13 +49,13 @@ export function renderInformation(currentConditions, timeAndAddress) {
       const feelsLike = convertToFahrenheit(currentConditions.feelsLike);
       const windSpeed = convertToMph(currentConditions.windSpeed);
 
-      temperatureElement.textContent = `Temperature: ${temperature}°F`;
+      temperatureElement.textContent = `${temperature}`;
       feelsLikeElement.textContent = `Feels like: ${feelsLike}°F`;
       windSpeedElement.textContent = `Wind speed: ${windSpeed} mph`;
     } else {
       currentUnit = 'celsius';
 
-      temperatureElement.textContent = `Temperature: ${currentConditions.temperature}°C`;
+      temperatureElement.textContent = `${currentConditions.temperature}`;
       feelsLikeElement.textContent = `Feels like: ${currentConditions.feelsLike}°C`;
       windSpeedElement.textContent = `Wind speed: ${currentConditions.windSpeed} km/h`;
     }
@@ -56,6 +63,7 @@ export function renderInformation(currentConditions, timeAndAddress) {
 
   div1.appendChild(addressElement);
   div1.appendChild(timeZoneElement);
+  innerDiv1.appendChild(statusImage);
   innerDiv1.appendChild(temperatureElement);
   div1.appendChild(innerDiv1);
   informationDiv.appendChild(div1);
