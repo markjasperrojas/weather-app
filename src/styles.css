@@ -163,6 +163,17 @@ form button {
   grid-template-rows: repeat(2, 1fr);
 }
 
+.div2 div {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  gap: 1rem;
+}
+
+.div2 img {
+  width: 2.5rem;
+}
+
 /* === TOGGLE === */
 
 .toggle {

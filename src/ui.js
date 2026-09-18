@@ -1,4 +1,7 @@
 import sunImage from './assets/sun.png';
+import feelsLikeImage from './assets/feels-like.png';
+import windImage from './assets/wind.png';
+import humidityImage from './assets/humidity.png';
 
 export function renderInformation(currentConditions, timeAndAddress) {
   let currentUnit = 'celsius';
@@ -19,9 +22,20 @@ export function renderInformation(currentConditions, timeAndAddress) {
   const temperatureElement = document.createElement('p');
   temperatureElement.classList.add('temperature');
 
+  const feelsLikeIcon = document.createElement('img');
+  feelsLikeIcon.src = feelsLikeImage;
+  const feelsLikeDiv = document.createElement('div');
   const feelsLikeElement = document.createElement('p');
-  const humidityElement = document.createElement('p');
+
+  const windSpeedIcon = document.createElement('img');
+  windSpeedIcon.src = windImage;
+  const windSpeedDiv = document.createElement('div');
   const windSpeedElement = document.createElement('p');
+
+  const humidityIcon = document.createElement('img');
+  humidityIcon.src = humidityImage;
+  const humidityDiv = document.createElement('div');
+  const humidityElement = document.createElement('p');
 
   const addressElement = document.createElement('p');
   addressElement.classList.add('address');
@@ -68,9 +82,18 @@ export function renderInformation(currentConditions, timeAndAddress) {
   div1.appendChild(innerDiv1);
   informationDiv.appendChild(div1);
 
-  div2.appendChild(feelsLikeElement);
-  div2.appendChild(humidityElement);
-  div2.appendChild(windSpeedElement);
+  feelsLikeDiv.appendChild(feelsLikeIcon);
+  feelsLikeDiv.appendChild(feelsLikeElement);
+
+  windSpeedDiv.appendChild(windSpeedIcon);
+  windSpeedDiv.appendChild(windSpeedElement);
+
+  humidityDiv.appendChild(humidityIcon);
+  humidityDiv.appendChild(humidityElement);
+
+  div2.appendChild(feelsLikeDiv);
+  div2.appendChild(humidityDiv);
+  div2.appendChild(windSpeedDiv);
   informationDiv.appendChild(div2);
 
   toggleDiv.appendChild(toggleBtn);
