@@ -18,24 +18,38 @@ export function renderInformation(currentConditions, timeAndAddress) {
   const div2 = document.createElement('div');
   div2.classList.add('div2');
 
-  const toggleBtn = document.createElement('button');
+  const toggleBtn = document.createElement('input');
+  toggleBtn.type = 'checkbox';
+  toggleBtn.id = 'toggle-btn';
   const temperatureElement = document.createElement('p');
   temperatureElement.classList.add('temperature');
 
   const feelsLikeIcon = document.createElement('img');
   feelsLikeIcon.src = feelsLikeImage;
   const feelsLikeDiv = document.createElement('div');
-  const feelsLikeElement = document.createElement('p');
+  feelsLikeDiv.classList.add('condition-div');
+  const feelsLikeLabel = document.createElement('p');
+  feelsLikeLabel.textContent = 'Feels like';
+  const feelsLikeElement = document.createElement('span');
+  const feelsLikeInnerDiv = document.createElement('div');
 
   const windSpeedIcon = document.createElement('img');
   windSpeedIcon.src = windImage;
   const windSpeedDiv = document.createElement('div');
-  const windSpeedElement = document.createElement('p');
+  windSpeedDiv.classList.add('condition-div');
+  const windSpeedLabel = document.createElement('p');
+  windSpeedLabel.textContent = 'Wind speed';
+  const windSpeedElement = document.createElement('span');
+  const windSpeedInnerDiv = document.createElement('div');
 
   const humidityIcon = document.createElement('img');
   humidityIcon.src = humidityImage;
   const humidityDiv = document.createElement('div');
-  const humidityElement = document.createElement('p');
+  humidityDiv.classList.add('condition-div');
+  const humidityLabel = document.createElement('p');
+  humidityLabel.textContent = 'Humidity';
+  const humidityElement = document.createElement('span');
+  const humidityInnerDiv = document.createElement('div');
 
   const addressElement = document.createElement('p');
   addressElement.classList.add('address');
@@ -46,16 +60,15 @@ export function renderInformation(currentConditions, timeAndAddress) {
   const statusImage = document.createElement('img');
   statusImage.src = sunImage;
 
-  toggleBtn.textContent = '°C / °F';
   temperatureElement.textContent = `${currentConditions.temperature}`;
-  feelsLikeElement.textContent = `Feels like: ${currentConditions.feelsLike}°C`;
-  humidityElement.textContent = `Humidity: ${currentConditions.humidity}%`;
-  windSpeedElement.textContent = `Wind speed: ${currentConditions.windSpeed} km/h`;
+  feelsLikeElement.textContent = `${currentConditions.feelsLike}°C`;
+  humidityElement.textContent = `${currentConditions.humidity}%`;
+  windSpeedElement.textContent = `${currentConditions.windSpeed} km/h`;
 
   addressElement.textContent = `${timeAndAddress.resolvedAddress.toUpperCase()}`;
   timeZoneElement.textContent = `${timeAndAddress.timeZone}`;
 
-  toggleBtn.addEventListener('click', () => {
+  toggleBtn.addEventListener('change', () => {
     if (currentUnit === 'celsius') {
       currentUnit = 'fahrenheit';
 
@@ -64,14 +77,14 @@ export function renderInformation(currentConditions, timeAndAddress) {
       const windSpeed = convertToMph(currentConditions.windSpeed);
 
       temperatureElement.textContent = `${temperature}`;
-      feelsLikeElement.textContent = `Feels like: ${feelsLike}°F`;
-      windSpeedElement.textContent = `Wind speed: ${windSpeed} mph`;
+      feelsLikeElement.textContent = `${feelsLike}°F`;
+      windSpeedElement.textContent = `${windSpeed} mph`;
     } else {
       currentUnit = 'celsius';
 
       temperatureElement.textContent = `${currentConditions.temperature}`;
-      feelsLikeElement.textContent = `Feels like: ${currentConditions.feelsLike}°C`;
-      windSpeedElement.textContent = `Wind speed: ${currentConditions.windSpeed} km/h`;
+      feelsLikeElement.textContent = `${currentConditions.feelsLike}°C`;
+      windSpeedElement.textContent = `${currentConditions.windSpeed} km/h`;
     }
   });
 
@@ -83,13 +96,19 @@ export function renderInformation(currentConditions, timeAndAddress) {
   informationDiv.appendChild(div1);
 
   feelsLikeDiv.appendChild(feelsLikeIcon);
-  feelsLikeDiv.appendChild(feelsLikeElement);
+  feelsLikeInnerDiv.appendChild(feelsLikeLabel);
+  feelsLikeInnerDiv.appendChild(feelsLikeElement);
+  feelsLikeDiv.appendChild(feelsLikeInnerDiv);
 
   windSpeedDiv.appendChild(windSpeedIcon);
-  windSpeedDiv.appendChild(windSpeedElement);
+  windSpeedInnerDiv.appendChild(windSpeedLabel);
+  windSpeedInnerDiv.appendChild(windSpeedElement);
+  windSpeedDiv.appendChild(windSpeedInnerDiv);
 
   humidityDiv.appendChild(humidityIcon);
-  humidityDiv.appendChild(humidityElement);
+  humidityInnerDiv.appendChild(humidityLabel);
+  humidityInnerDiv.appendChild(humidityElement);
+  humidityDiv.appendChild(humidityInnerDiv);
 
   div2.appendChild(feelsLikeDiv);
   div2.appendChild(humidityDiv);

@@ -163,11 +163,18 @@ form button {
   grid-template-rows: repeat(2, 1fr);
 }
 
-.div2 div {
+.condition-div {
   display: flex;
-  /* justify-content: center; */
   align-items: center;
   gap: 1rem;
+}
+
+.condition-div p {
+  color: var(--grey);
+}
+
+.condition-div span {
+  font-size: 2rem;
 }
 
 .div2 img {
