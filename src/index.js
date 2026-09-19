@@ -3,11 +3,14 @@ import {
   getWeatherData,
   getCurrentConditions,
   getAddressAndTimeZone,
+  defaultLocation,
 } from './weather.js';
 import { renderInformation } from './ui.js';
 
 const form = document.querySelector('form');
 const locationInput = document.getElementById('location');
+
+defaultLocation();
 
 form.addEventListener('submit', async (event) => {
   event.preventDefault();

@@ -1,3 +1,5 @@
+import { renderInformation } from './ui.js';
+
 async function getWeatherData(location) {
   try {
     const response = await fetch(
@@ -65,4 +67,17 @@ function getAddressAndTimeZone(data) {
   };
 }
 
-export { getWeatherData, getCurrentConditions, getAddressAndTimeZone };
+async function defaultLocation() {
+  const weatherData = await getWeatherData('ormoc');
+  const currentConditions = getCurrentConditions(weatherData);
+  const timeAndAddress = getAddressAndTimeZone(weatherData);
+
+  renderInformation(currentConditions, timeAndAddress);
+}
+
+export {
+  getWeatherData,
+  getCurrentConditions,
+  getAddressAndTimeZone,
+  defaultLocation,
+};
