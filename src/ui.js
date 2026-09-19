@@ -18,9 +18,22 @@ export function renderInformation(currentConditions, timeAndAddress) {
   const div2 = document.createElement('div');
   div2.classList.add('div2');
 
+  const unitToggle = document.createElement('label');
+  unitToggle.classList.add('unit-toggle');
+  unitToggle.htmlFor = 'toggle-btn';
+  unitToggle.setAttribute('aria-label', 'Switch temperature unit');
+
   const toggleBtn = document.createElement('input');
   toggleBtn.type = 'checkbox';
   toggleBtn.id = 'toggle-btn';
+
+  const celsiusLabel = document.createElement('span');
+  celsiusLabel.classList.add('unit-toggle__option');
+  celsiusLabel.textContent = '°C';
+
+  const fahrenheitLabel = document.createElement('span');
+  fahrenheitLabel.classList.add('unit-toggle__option');
+  fahrenheitLabel.textContent = '°F';
   const temperatureElement = document.createElement('p');
   temperatureElement.classList.add('temperature');
 
@@ -115,7 +128,10 @@ export function renderInformation(currentConditions, timeAndAddress) {
   div2.appendChild(windSpeedDiv);
   informationDiv.appendChild(div2);
 
-  toggleDiv.appendChild(toggleBtn);
+  unitToggle.appendChild(toggleBtn);
+  unitToggle.appendChild(celsiusLabel);
+  unitToggle.appendChild(fahrenheitLabel);
+  toggleDiv.appendChild(unitToggle);
 }
 
 function convertToFahrenheit(celsius) {

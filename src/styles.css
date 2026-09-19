@@ -188,6 +188,70 @@ form button {
   justify-content: center;
 }
 
+.unit-toggle {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 15rem;
+  padding: 0.4rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--white);
+  box-shadow: 0 0.4rem 1.2rem #1d5eaa33;
+  cursor: pointer;
+}
+
+.unit-toggle::before {
+  position: absolute;
+  inset: 0.4rem 50% 0.4rem 0.4rem;
+  z-index: 0;
+  border-radius: 999px;
+  background: #4385dc;
+  content: '';
+  transition: transform 0.2s ease;
+}
+
+.unit-toggle:has(input:checked)::before {
+  transform: translateX(100%);
+}
+
+.unit-toggle input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.unit-toggle__option {
+  position: relative;
+  z-index: 1;
+  padding: 0.7rem 0;
+  /* color: #53647e; */
+  color: var(--black);
+  font-size: 2.4rem;
+  font-weight: 600;
+  line-height: 1;
+  text-align: center;
+  transition: color 0.2s ease;
+}
+
+.unit-toggle__option:first-of-type {
+  color: var(--white);
+}
+
+.unit-toggle:has(input:checked) .unit-toggle__option:first-of-type {
+  color: var(--black);
+}
+
+.unit-toggle:has(input:checked) .unit-toggle__option:last-of-type {
+  color: var(--white);
+}
+
+.unit-toggle:has(input:focus-visible) {
+  outline: 0.3rem solid #1d5eaa;
+  outline-offset: 0.3rem;
+}
+
 /* === FOOTER === */
 
 #github-logo {
