@@ -46,6 +46,7 @@ html {
 
 body {
   min-height: 100vh;
+  min-height: 100dvh;
   font-size: 1.6rem;
   display: flex;
   justify-content: center;
@@ -58,7 +59,9 @@ body {
 }
 
 .content {
-  flex: 0 0 60rem;
+  flex: 0 1 60rem;
+  min-width: 0;
+  margin: 0 1.6rem;
   display: flex;
   flex-direction: column;
 }
@@ -87,19 +90,19 @@ header img {
 /* === SEARCH BAR === */
 
 form {
-  border: 1px solid;
   display: flex;
-  justify-content: center;
+  align-items: center;
   gap: 1rem;
   border-radius: 1rem;
-  padding: 1rem 0;
+  padding: 1rem 2rem;
   background: var(--white);
   border: none;
   box-shadow: var(--box-shadow);
 }
 
 #location {
-  width: 46rem;
+  flex: 1;
+  min-width: 0;
   font-size: 2rem;
   border: none;
   outline: none;
@@ -107,6 +110,11 @@ form {
 
 form img {
   width: 5rem;
+}
+
+form svg,
+form button {
+  flex-shrink: 0;
 }
 
 form button {
@@ -120,7 +128,6 @@ form button {
 .information {
   display: flex;
   flex-direction: column;
-  border: 1px solid;
   border-radius: 1rem;
   min-height: 40rem;
   margin: 2.5rem 0;
@@ -135,6 +142,7 @@ form button {
   font-size: 2.8rem;
   font-weight: 600;
   color: var(--black);
+  overflow-wrap: anywhere;
 }
 
 .timezone {
@@ -315,4 +323,95 @@ svg {
   text-align: center;
   font-size: 2rem;
   color: var(--black);
+}
+
+/* === RESPONSIVE === */
+
+@media (max-width: 600px) {
+  body {
+    /* Fixed backgrounds are janky or zoomed-in on mobile browsers. */
+    background-attachment: scroll;
+  }
+
+  header {
+    font-size: 2.4rem;
+    padding: 2.4rem 0;
+  }
+
+  header img {
+    width: 4.8rem;
+  }
+
+  form {
+    padding: 0.8rem 1.2rem;
+  }
+
+  form svg {
+    width: 3rem;
+  }
+
+  #location {
+    font-size: 1.8rem;
+  }
+
+  form img {
+    width: 4rem;
+  }
+
+  .information {
+    min-height: 0;
+    margin: 2rem 0;
+    padding: 2.4rem 1.6rem;
+  }
+
+  .information .error {
+    padding: 4rem 0;
+  }
+
+  .address {
+    font-size: 2.2rem;
+  }
+
+  .timezone {
+    font-size: 1.6rem;
+  }
+
+  .div1 div {
+    gap: 2rem;
+  }
+
+  .div1 div img,
+  .weather-icon {
+    width: 7rem;
+    height: 7rem;
+  }
+
+  .temperature {
+    font-size: 5.2rem;
+  }
+
+  .conditions {
+    font-size: 1.8rem;
+  }
+
+  .div2 {
+    padding: 1.5rem 0.8rem 0;
+    row-gap: 1.2rem;
+    column-gap: 1.6rem;
+  }
+
+  .condition-div span {
+    font-size: 1.8rem;
+  }
+
+  footer {
+    flex-wrap: wrap;
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .div2 {
+    grid-template-columns: 1fr;
+  }
 }
