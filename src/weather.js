@@ -1,22 +1,18 @@
-import { renderInformation } from './ui.js';
-
 async function getWeatherData(location) {
-  try {
-    const response = await fetch(
-      // Remove "unitGroup=metric&" if you want Fahrenheit instead of Celsius.
-      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=metric&key=SKYRQFC5MDWFR9VM75TG6ZK9C`,
+  const response = await fetch(
+    // Remove "unitGroup=metric&" if you want Fahrenheit instead of Celsius.
+    `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${encodeURIComponent(location)}?unitGroup=metric&key=SKYRQFC5MDWFR9VM75TG6ZK9C`,
+  );
+
+  if (!response.ok) {
+    throw new Error(
+      response.status === 400
+        ? 'Location not found. Please try another search.'
+        : `Something went wrong (HTTP ${response.status}). Please try again.`,
     );
-
-    if (!response.ok) {
-      throw new Error(`HTTP error: ${response.status}`);
-    }
-
-    const data = await response.json();
-
-    return data;
-  } catch (error) {
-    return error;
   }
+
+  return response.json();
 }
 
 function getTemperature(data) {
@@ -67,17 +63,4 @@ function getAddressAndTimeZone(data) {
   };
 }
 
-async function defaultLocation() {
-  const weatherData = await getWeatherData('ormoc');
-  const currentConditions = getCurrentConditions(weatherData);
-  const timeAndAddress = getAddressAndTimeZone(weatherData);
-
-  renderInformation(currentConditions, timeAndAddress);
-}
-
-export {
-  getWeatherData,
-  getCurrentConditions,
-  getAddressAndTimeZone,
-  defaultLocation,
-};
+export { getWeatherData, getCurrentConditions, getAddressAndTimeZone };

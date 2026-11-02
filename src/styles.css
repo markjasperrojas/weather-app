@@ -295,3 +295,12 @@ svg {
   width: 4rem;
   fill: var(--grey);
 }
+
+/* === ERROR === */
+
+.information .error {
+  margin: auto;
+  text-align: center;
+  font-size: 2rem;
+  color: var(--black);
+}

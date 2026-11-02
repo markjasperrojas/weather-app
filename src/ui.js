@@ -3,8 +3,9 @@ import feelsLikeImage from './assets/feels-like.png';
 import windImage from './assets/wind.png';
 import humidityImage from './assets/humidity.png';
 
+let currentUnit = 'celsius';
+
 export function renderInformation(currentConditions, timeAndAddress) {
-  let currentUnit = 'celsius';
   const informationDiv = document.querySelector('.information');
   const toggleDiv = document.querySelector('.toggle');
 
@@ -26,6 +27,7 @@ export function renderInformation(currentConditions, timeAndAddress) {
   const toggleBtn = document.createElement('input');
   toggleBtn.type = 'checkbox';
   toggleBtn.id = 'toggle-btn';
+  toggleBtn.checked = currentUnit === 'fahrenheit';
 
   const celsiusLabel = document.createElement('span');
   celsiusLabel.classList.add('unit-toggle__option');
@@ -73,32 +75,28 @@ export function renderInformation(currentConditions, timeAndAddress) {
   const statusImage = document.createElement('img');
   statusImage.src = sunImage;
 
-  temperatureElement.textContent = `${currentConditions.temperature}`;
-  feelsLikeElement.textContent = `${currentConditions.feelsLike}°C`;
   humidityElement.textContent = `${currentConditions.humidity}%`;
-  windSpeedElement.textContent = `${currentConditions.windSpeed} km/h`;
 
   addressElement.textContent = `${timeAndAddress.resolvedAddress.toUpperCase()}`;
   timeZoneElement.textContent = `${timeAndAddress.timeZone}`;
 
-  toggleBtn.addEventListener('change', () => {
-    if (currentUnit === 'celsius') {
-      currentUnit = 'fahrenheit';
-
-      const temperature = convertToFahrenheit(currentConditions.temperature);
-      const feelsLike = convertToFahrenheit(currentConditions.feelsLike);
-      const windSpeed = convertToMph(currentConditions.windSpeed);
-
-      temperatureElement.textContent = `${temperature}`;
-      feelsLikeElement.textContent = `${feelsLike}°F`;
-      windSpeedElement.textContent = `${windSpeed} mph`;
+  function updateDisplay() {
+    if (currentUnit === 'fahrenheit') {
+      temperatureElement.textContent = `${convertToFahrenheit(currentConditions.temperature)}`;
+      feelsLikeElement.textContent = `${convertToFahrenheit(currentConditions.feelsLike)}°F`;
+      windSpeedElement.textContent = `${convertToMph(currentConditions.windSpeed)} mph`;
     } else {
-      currentUnit = 'celsius';
-
       temperatureElement.textContent = `${currentConditions.temperature}`;
       feelsLikeElement.textContent = `${currentConditions.feelsLike}°C`;
       windSpeedElement.textContent = `${currentConditions.windSpeed} km/h`;
     }
+  }
+
+  updateDisplay();
+
+  toggleBtn.addEventListener('change', () => {
+    currentUnit = toggleBtn.checked ? 'fahrenheit' : 'celsius';
+    updateDisplay();
   });
 
   div1.appendChild(addressElement);
@@ -132,6 +130,20 @@ export function renderInformation(currentConditions, timeAndAddress) {
   unitToggle.appendChild(celsiusLabel);
   unitToggle.appendChild(fahrenheitLabel);
   toggleDiv.appendChild(unitToggle);
+}
+
+export function renderError(message) {
+  const informationDiv = document.querySelector('.information');
+  const toggleDiv = document.querySelector('.toggle');
+
+  informationDiv.innerHTML = '';
+  toggleDiv.innerHTML = '';
+
+  const errorElement = document.createElement('p');
+  errorElement.classList.add('error');
+  errorElement.textContent = message;
+
+  informationDiv.appendChild(errorElement);
 }
 
 function convertToFahrenheit(celsius) {
