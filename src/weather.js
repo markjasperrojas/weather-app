@@ -31,6 +31,14 @@ function getWindSpeed(data) {
   return data.currentConditions.windspeed;
 }
 
+function getIcon(data) {
+  return data.currentConditions.icon;
+}
+
+function getConditions(data) {
+  return data.currentConditions.conditions;
+}
+
 function getResolvedAddress(data) {
   return data.resolvedAddress;
 }
@@ -44,12 +52,16 @@ function getCurrentConditions(data) {
   const feelsLike = getFeelsLike(data);
   const humidity = getHumidity(data);
   const windSpeed = getWindSpeed(data);
+  const icon = getIcon(data);
+  const conditions = getConditions(data);
 
   return {
     temperature,
     feelsLike,
     humidity,
     windSpeed,
+    icon,
+    conditions,
   };
 }
 

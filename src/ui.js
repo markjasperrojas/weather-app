@@ -1,7 +1,21 @@
 import sunImage from './assets/sun.png';
+import partlyCloudyImage from './assets/logo.png';
+import cloudImage from './assets/cloud.png';
+import rainImage from './assets/rain.png';
 import feelsLikeImage from './assets/feels-like.png';
 import windImage from './assets/wind.png';
 import humidityImage from './assets/humidity.png';
+
+const weatherIcons = {
+  'clear-day': sunImage,
+  'clear-night': sunImage,
+  'partly-cloudy-day': partlyCloudyImage,
+  'partly-cloudy-night': partlyCloudyImage,
+  cloudy: cloudImage,
+  fog: cloudImage,
+  wind: cloudImage,
+  rain: rainImage,
+};
 
 let currentUnit = 'celsius';
 
@@ -73,7 +87,13 @@ export function renderInformation(currentConditions, timeAndAddress) {
   timeZoneElement.classList.add('timezone');
 
   const statusImage = document.createElement('img');
-  statusImage.src = sunImage;
+  statusImage.classList.add('weather-icon');
+  statusImage.src = weatherIcons[currentConditions.icon] ?? cloudImage;
+  statusImage.alt = currentConditions.conditions ?? 'Weather icon';
+
+  const conditionsElement = document.createElement('p');
+  conditionsElement.classList.add('conditions');
+  conditionsElement.textContent = currentConditions.conditions ?? '';
 
   humidityElement.textContent = `${currentConditions.humidity}%`;
 
@@ -82,11 +102,11 @@ export function renderInformation(currentConditions, timeAndAddress) {
 
   function updateDisplay() {
     if (currentUnit === 'fahrenheit') {
-      temperatureElement.textContent = `${convertToFahrenheit(currentConditions.temperature)}`;
+      temperatureElement.textContent = `${convertToFahrenheit(currentConditions.temperature)}°F`;
       feelsLikeElement.textContent = `${convertToFahrenheit(currentConditions.feelsLike)}°F`;
       windSpeedElement.textContent = `${convertToMph(currentConditions.windSpeed)} mph`;
     } else {
-      temperatureElement.textContent = `${currentConditions.temperature}`;
+      temperatureElement.textContent = `${currentConditions.temperature}°C`;
       feelsLikeElement.textContent = `${currentConditions.feelsLike}°C`;
       windSpeedElement.textContent = `${currentConditions.windSpeed} km/h`;
     }
@@ -104,6 +124,7 @@ export function renderInformation(currentConditions, timeAndAddress) {
   innerDiv1.appendChild(statusImage);
   innerDiv1.appendChild(temperatureElement);
   div1.appendChild(innerDiv1);
+  div1.appendChild(conditionsElement);
   informationDiv.appendChild(div1);
 
   feelsLikeDiv.appendChild(feelsLikeIcon);
@@ -147,9 +168,9 @@ export function renderError(message) {
 }
 
 function convertToFahrenheit(celsius) {
-  return (celsius * 1.8 + 32).toFixed(2);
+  return (celsius * 1.8 + 32).toFixed(1);
 }
 
 function convertToMph(kmh) {
-  return (kmh * 0.621371).toFixed(2);
+  return (kmh * 0.621371).toFixed(1);
 }
